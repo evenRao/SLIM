@@ -1,0 +1,5 @@
+- Thing to make it better
+  - Sub compartments
+- Cursor navigation and operation in TUI
+- Web UI: consider changing folder size or location
+- Web UI: create bin by dragging on base to select size

@@ -6,6 +6,8 @@ SLIM is a local inventory application written in Rust. It tracks items, storage 
 
 Core inventory workflows run offline. Building from source downloads dependencies; configured webhooks need access to their receivers. No cloud account, database server, JavaScript build pipeline, or external asset CDN is required.
 
+<!-- + for good org. -->
+
 ## Contents
 
 - [Capabilities and scope](#capabilities-and-scope)

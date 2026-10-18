@@ -237,7 +237,7 @@ impl GridfinityBin {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct NewGridfinityBin {
     pub bin_code: String,
-    pub width_units: u32,
+    pub width_units: u32, // suggestion: consider turning into vector
     pub depth_units: u32,
     pub height_units: u32,
     pub compartment_count: u32,
@@ -372,6 +372,7 @@ impl GridMap {
         }
     }
 
+    // Suggestion: consider turning into Display impl. (then you get .to_string())
     /// Format an ASCII representation of the 2D grid.
     pub fn render_ascii(&self) -> String {
         let mut out = String::new();

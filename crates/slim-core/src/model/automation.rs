@@ -299,6 +299,9 @@ pub enum AutomationRunStatus {
     Skipped,
 }
 
+// suggestion: see derive_more or similar crate to automatically
+// generate Display and FromStr impl. using proc. macro
+
 impl fmt::Display for AutomationRunStatus {
     fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
         match self {

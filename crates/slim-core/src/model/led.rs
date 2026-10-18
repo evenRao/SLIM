@@ -31,6 +31,28 @@ pub const COLOR_OFF: [u8; 3] = [0, 0, 0];
 /// Default locate pulse TTL in seconds.
 pub const DEFAULT_LOCATE_TTL_SECS: u64 = 30;
 
+// Suggestion
+struct LedColor {
+    pub red: u8,
+    pub green: u8,
+    pub blue: u8
+}
+
+impl LedColor {
+    pub const fn new(red: u8, green: u8, blue: u8) -> Self {
+        Self { red, green, blue }
+    }
+
+    pub const WHITE: Self = Self::new(255, 255, 255);
+    pub const BLACK: Self = Self::new(0, 0, 0);
+}
+
+impl From<[u8; 3]> for LedColor {
+    fn from(value: [u8; 3]) -> Self {
+        Self { red: value[0], green: value[1], blue: value[2] }
+    }
+}
+
 /// Logical operating mode for a dock LED.
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash, Serialize, Deserialize, Default)]
 #[serde(rename_all = "snake_case")]
@@ -152,7 +174,7 @@ pub struct DockLedState {
     pub x: u32,
     pub y: u32,
     pub mode: LedMode,
-    pub r: u8,
+    pub r: u8, // suggestion: make LedColor
     pub g: u8,
     pub b: u8,
     pub expires_at: Option<OffsetDateTime>,

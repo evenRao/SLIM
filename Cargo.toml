@@ -2,12 +2,14 @@
 members = ["crates/slim-core", "crates/slim-db", "crates/slim-tui", "crates/slim-cli"]
 resolver = "2"
 
+# + for using workspace level conf
 [workspace.package]
 version = "0.3.0"
 edition = "2024"
 license = "MIT"
 rust-version = "1.89"
 
+# + for using workspace deps
 [workspace.dependencies]
 # Domain
 uuid = { version = "1", features = ["v4", "serde"] }

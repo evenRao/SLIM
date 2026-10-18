@@ -1,0 +1,8 @@
+- Can't place items in a bin
+  - Instruction is not visible in the TUI
+- Activity list does not show Gridfinity placement changes
+- TUI doesn't have instructions for issuing
+- Viewer should not be able to export workspace
+- Encapsulate all db command in slim-db crate
+- Consider replacing instances of json! macro with real struct def + derive serde
+- `match route`, break match branches into sep. function to not have big big match
