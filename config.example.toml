@@ -1,0 +1,13 @@
+# SLIM configuration
+# Copy to config.toml and edit as needed.
+
+# Path to the SQLite database file.
+# If not set, defaults to the platform data directory:
+#   Windows: %APPDATA%\slim\data\slim.sqlite3
+#   Linux:   ~/.local/share/slim/slim.sqlite3
+#   macOS:   ~/Library/Application Support/slim/slim.sqlite3
+# db_path = "/path/to/your/slim.sqlite3"
+
+# Default actor name for operations when --actor is not specified
+# and OS username lookup does not match a known actor.
+# default_actor = "Your Name"

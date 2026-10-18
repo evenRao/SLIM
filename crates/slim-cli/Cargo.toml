@@ -1,0 +1,41 @@
+[package]
+name = "slim-cli"
+description = "SLIM command-line interface"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+rust-version.workspace = true
+default-run = "slim"
+
+[[bin]]
+name = "slim"
+path = "src/main.rs"
+
+[[bin]]
+name = "slim-app"
+path = "src/desktop_main.rs"
+
+[dependencies]
+slim-core.workspace = true
+slim-db.workspace = true
+slim-tui.workspace = true
+clap.workspace = true
+anyhow.workspace = true
+serde.workspace = true
+serde_json.workspace = true
+toml.workspace = true
+tracing.workspace = true
+tracing-subscriber.workspace = true
+uuid.workspace = true
+time.workspace = true
+directories.workspace = true
+rusqlite.workspace = true
+serialport.workspace = true
+tiny_http.workspace = true
+
+
+[dev-dependencies]
+tempfile.workspace = true
+crossterm.workspace = true
+ratatui.workspace = true
+ureq.workspace = true

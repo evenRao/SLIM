@@ -1,0 +1,148 @@
+/* SLIM — Classic Mac OS look. Drop-in styles for the vanilla JS UI.
+   All classes are prefixed "mac-" so they won't collide with app.css.
+   No external fonts or URLs: safe under SLIM's same-origin CSP.
+   Append to (or replace) crates/slim-cli/src/desktop/app.css. */
+
+:root {
+  --mac-font: Chicago, "ChicagoFLF", Geneva, "Lucida Grande", "Courier New", monospace;
+}
+
+.mac-desktop {
+  min-height: 100vh;
+  position: relative;
+  background: conic-gradient(#000 25%, #fff 0 50%, #000 0 75%, #fff 0) 0 0 / 4px 4px;
+  font: 15px/1.3 var(--mac-font);
+  color: #000;
+}
+.mac-desktop *, .mac-desktop *::before, .mac-desktop *::after { box-sizing: border-box; }
+
+/* Menu bar */
+.mac-menubar {
+  position: sticky; top: 0; z-index: 50;
+  height: 28px; display: flex; align-items: center; gap: 22px; padding: 0 14px;
+  background: #fff; border-bottom: 2px solid #000; font-weight: 700;
+}
+.mac-menubar button { border: 0; background: none; padding: 2px 6px; border-radius: 0; font: inherit; font-weight: 700; }
+.mac-menubar button:hover, .mac-menubar button[aria-expanded="true"] { background: #000; color: #fff; }
+.mac-menubar .mac-right { margin-left: auto; font-weight: 400; }
+
+/* Windows */
+.mac-window {
+  position: absolute; background: #fff; border: 2px solid #000;
+  box-shadow: 3px 3px 0 #000; display: flex; flex-direction: column; min-width: 240px;
+}
+.mac-alert { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000, 6px 6px 0 4px #000; }
+.mac-titlebar {
+  height: 24px; flex: none; position: relative;
+  display: flex; align-items: center; justify-content: center;
+  border-bottom: 2px solid #000;
+  background: repeating-linear-gradient(#000 0 1px, #fff 1px 4px);
+}
+.mac-titlebar .mac-close {
+  position: absolute; left: 8px; top: 3px; width: 14px; height: 14px; padding: 0;
+  border: 2px solid #000; border-radius: 0; background: #fff;
+}
+.mac-titlebar .mac-close:hover { background: #000; }
+.mac-titlebar span { background: #fff; padding: 0 12px; font-weight: 700; }
+.mac-status {
+  flex: none; display: flex; justify-content: space-between; gap: 12px;
+  padding: 3px 10px; border-bottom: 2px solid #000;
+}
+.mac-body { flex: 1; padding: 12px 14px; overflow: auto; }
+
+/* Layout helpers */
+.mac-row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.mac-row.end { justify-content: flex-end; }
+.mac-field { display: flex; flex-direction: column; gap: 3px; margin-bottom: 8px; }
+.mac-note { font-size: 13px; margin: 8px 0 0; }
+
+/* Controls */
+.mac-desktop button, .mac-desktop input, .mac-desktop select, .mac-desktop textarea {
+  font: inherit; color: #000;
+}
+.mac-btn {
+  background: #fff; border: 2px solid #000; border-radius: 9px;
+  padding: 3px 14px; cursor: pointer;
+}
+.mac-btn:hover { background: #000; color: #fff; }
+.mac-btn-default { box-shadow: 0 0 0 2px #fff, 0 0 0 4px #000; }
+.mac-btn:disabled, .mac-btn[aria-disabled="true"] {
+  color: #555; border-style: dashed; background: #fff; cursor: not-allowed;
+}
+.mac-input, .mac-desktop input[type="text"], .mac-desktop input[type="password"],
+.mac-desktop input[type="number"], .mac-desktop select, .mac-desktop textarea {
+  width: 100%; border: 2px solid #000; border-radius: 0; background: #fff; padding: 2px 6px;
+}
+.mac-input[aria-invalid="true"], .mac-desktop [aria-invalid="true"] { border-width: 3px; }
+.mac-desktop :focus-visible { outline: 3px solid #000; outline-offset: 2px; }
+.mac-desktop .mac-selected :focus-visible, .mac-desktop .mac-btn:hover:focus-visible { outline-color: #fff; }
+
+/* Tables and lists */
+.mac-table { border-collapse: collapse; width: 100%; }
+.mac-table th { text-align: left; border-bottom: 2px solid #000; padding: 3px 8px; font-weight: 700; }
+.mac-table td { padding: 3px 8px; }
+.mac-table tbody tr { cursor: pointer; }
+.mac-table tr.mac-selected td, .mac-selected { background: #000; color: #fff; }
+.mac-list > * { padding: 2px 8px; display: flex; justify-content: space-between; gap: 12px; }
+.mac-list .indent-1 { padding-left: 24px; }
+.mac-list .indent-2 { padding-left: 44px; }
+.mac-list .indent-3 { padding-left: 64px; }
+
+/* Messages (always text + icon, never color alone) */
+.mac-error { border: 2px solid #000; padding: 8px 10px; display: flex; gap: 10px; margin: 8px 0; }
+.mac-error > b { flex: none; }
+
+/* Desktop icons (navigation) */
+.mac-icons { position: absolute; left: 24px; bottom: 24px; display: flex; gap: 12px; flex-wrap: wrap; }
+.mac-icon {
+  width: 88px; text-align: center; font-size: 13px; background: none; border: 0; padding: 0; cursor: pointer;
+}
+.mac-icon svg { display: block; margin: 0 auto 3px; }
+.mac-icon span { background: #fff; padding: 0 3px; }
+.mac-icon[aria-current="page"] span, .mac-icon:hover span { background: #000; color: #fff; }
+
+/* Gridfinity map */
+.mac-grid {
+  position: relative; border: 1px solid #000;
+  --cell: 72px; --cols: 6; --rows: 4;
+  width: calc(var(--cell) * var(--cols) + 2px); height: calc(var(--cell) * var(--rows) + 2px);
+  background:
+    repeating-linear-gradient(90deg, #000 0 1px, transparent 1px var(--cell)),
+    repeating-linear-gradient(0deg, #000 0 1px, transparent 1px var(--cell));
+}
+.mac-bin { position: absolute; background: #000; color: #fff; padding: 6px 8px; }
+.mac-bin.is-selected {
+  border: 3px solid #000; color: #000; padding: 0;
+  background: repeating-linear-gradient(45deg, #000 0 2px, #fff 2px 6px);
+}
+.mac-bin.is-selected span { background: #fff; display: inline-block; margin: 6px; padding: 0 4px; }
+.mac-ghost {
+  position: absolute; display: flex; align-items: center; justify-content: center;
+  border: 3px dashed #fff; outline: 2px dashed #000; color: #fff; font-weight: 700;
+}
+
+/* Narrow windows: stack the windows instead of overlapping them */
+@media (max-width: 750px) {
+  .mac-window { position: static; width: auto !important; height: auto !important; margin: 12px; }
+  .mac-icons { position: static; padding: 12px; }
+  .mac-grid { max-width: 100%; overflow: auto; }
+  .mac-table-wrap { overflow-x: auto; }
+}
+
+@media (prefers-reduced-motion: reduce) { .mac-desktop * { transition: none !important; animation: none !important; } }
+@media print { .mac-desktop { background: #fff; } .mac-menubar, .mac-icons { display: none; } }
+
+/* SLIM integration: flowing windows retain the reference layout as data grows. */
+html,body{margin:0;min-height:100%;}body{background:#fff;}button,input,select,textarea{font:inherit;}button{cursor:pointer;}h1,h2,p{margin:0 0 10px;}h1{font-size:18px;}h2{font-size:15px;}small,.sub,.mac-note{font-size:13px;}code{overflow-wrap:anywhere;}
+.mac-menubar{height:auto;min-height:30px;gap:16px;flex-wrap:wrap;padding-block:4px;}.mac-menubar [aria-current=page]{background:#000;color:#fff;}.mac-menubar .mac-right{font-size:13px;}
+#app{min-height:100vh;display:flex;flex-direction:column;}#content{padding:20px 24px;flex:1;min-width:0;}#content:focus{outline:none;}#content>.mac-window{margin-bottom:20px;}#content>.heading{background:#fff;border:2px solid #000;padding:12px 14px;margin-bottom:18px;}
+.mac-window{position:relative;min-width:0;}.mac-titlebar{height:auto;min-height:25px;text-align:center;}.mac-titlebar span{overflow-wrap:anywhere;max-width:90%;}.mac-titlebar .mac-close{top:4px;}.mac-body{min-width:0;padding:12px 14px;}.mac-status{font-size:13px;flex-wrap:wrap;}.desktop-columns{display:grid;grid-template-columns:minmax(0,1.8fr) minmax(280px,1fr);gap:24px;align-items:start;}.desktop-columns aside>.mac-window{margin-bottom:20px;}.storage-layout{grid-template-columns:minmax(0,1fr) minmax(0,1fr);}.grid-layout{grid-template-columns:minmax(0,1.5fr) minmax(300px,1fr);}
+.mac-icons{position:relative;inset:auto;gap:12px;padding:8px 24px 28px;margin-top:8px;}.mac-icon{min-height:60px;}.mac-icon:focus-visible{outline-offset:4px;}.mac-icon span{display:inline-block;}.mac-summary{margin:0;}.mac-summary>div{display:flex;justify-content:space-between;gap:12px;padding:3px 0;}.mac-summary dt,.mac-summary dd{margin:0;}.mac-summary dd{text-align:right;font-weight:bold;}.desktop-note{background:#fff;border:2px solid #000;padding:8px;margin-top:18px;}
+.mac-btn{font-size:13px;min-height:29px;padding:3px 10px;}.mac-btn-default{margin:4px;}.mac-btn.danger{border-style:double;border-width:3px;}.mac-btn:disabled{opacity:1;}.mac-btn.mac-selected,.mac-btn.mac-selected:hover{background:#000;color:#fff;}.mac-row,.actions,.row-actions,.modal-actions{display:flex;gap:8px;align-items:center;flex-wrap:wrap;}.row-actions{gap:6px;margin:5px 0;}.heading{display:flex;justify-content:space-between;align-items:start;gap:14px;flex-wrap:wrap;}.heading p{margin:0;font-size:13px;}.toolbar{margin-bottom:14px;}.find-label{display:flex;gap:8px;align-items:center;max-width:100%;}.find-label .search{width:160px;min-height:29px;}.deleted-toggle{display:block;margin:16px 0 2px;font-size:13px;}.mac-table{font-size:13px;}.mac-table td{vertical-align:top;padding:8px;}.mac-table th{white-space:nowrap;}.mac-table tbody tr{cursor:default;}.mac-table tbody tr+tr{border-top:1px dotted #999;}.table-wrap{max-width:100%;overflow:auto;}.item-link{border:0;border-radius:0;text-align:left;font-weight:bold;padding:3px 4px;}.badge{display:inline-block;border:1px solid #000;padding:1px 5px;font-size:12px;white-space:nowrap;}.badge.warning,.badge.error{font-weight:bold;border:2px solid #000;}.badge.neutral{border-style:dashed;}.empty{padding:16px 0;}.empty p{margin:0;}.split,.metrics{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px;margin-bottom:20px;}.metrics{grid-template-columns:repeat(4,minmax(0,1fr));}.metric{background:#fff;border:2px solid #000;box-shadow:3px 3px #000;padding:14px;}.metric>*{display:block;}.metric strong{font-size:28px;margin:8px 0;}.panel-description{margin:0 0 12px;}.panel-actions{margin-bottom:12px;}.setting-row{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 0;border-bottom:1px solid #000;}.setting-row:last-child{border:0;}.setting-row p{font-size:13px;}.storage-tree{margin:0 -10px 14px;}.storage-tree>div{align-items:center;padding-block:5px;}.tree-link{background:transparent;color:inherit!important;border:0;border-radius:0;text-align:left;padding:3px 0;}.mac-selected .tree-link:hover{background:#fff;color:#000!important;}.mac-selected:focus-within{outline:2px dashed #fff;outline-offset:-3px;}
+.grid-scroll{overflow:auto;max-width:100%;padding-bottom:8px;}.mac-grid{flex:none;}.mac-bin{border:2px solid #fff;text-align:left;font:13px var(--mac-font);overflow:hidden;}.mac-desktop .mac-bin{color:#fff;background:#000;}.mac-bin:hover,.mac-bin:focus-visible{color:#000;background:repeating-linear-gradient(45deg,#000 0 2px,#fff 2px 6px);}.mac-bin:hover span,.mac-bin:focus-visible span{background:#fff;color:#000;}.mac-grid .mac-bin:focus-visible{outline:3px solid #000;outline-offset:-5px;}
+#modal{position:fixed;padding:0;width:min(620px,calc(100% - 40px));max-height:calc(100dvh - 48px);margin:auto;overflow:auto;background:#fff;color:#000;border:2px solid #000;}#modal:not([open]){display:none;}#modal::backdrop{background:rgba(255,255,255,.45);}#modal .mac-titlebar{position:sticky;top:0;z-index:1;}.modal-description{margin-bottom:12px;}.form-fields{display:grid;gap:6px;margin-top:14px;}.form-fields textarea{min-height:70px;resize:vertical;}.form-fields input,.form-fields select{min-height:32px;}.field small{line-height:1.4;}.modal-actions{justify-content:flex-end;margin-top:18px;gap:12px;}.mac-error:empty{display:none;}.mac-error{line-height:1.5;}.error-message:focus{outline:2px solid #000;outline-offset:2px;}.balance{display:flex;justify-content:space-between;gap:12px;padding:8px 0;border-bottom:1px solid #000;}.label-preview{text-align:center;}.label-preview img{object-fit:contain;}
+.auth-shell{display:flex;justify-content:center;align-items:center;min-height:calc(100vh - 30px);padding:24px;}.auth-card{width:440px;padding:0 22px 22px;}.auth-card>.mac-titlebar{margin:0 -22px 22px;}.auth-card .logo{font-size:28px;font-weight:bold;margin-bottom:8px;}.auth-card .eyebrow{font-size:13px;}.auth-card h1{font-size:22px;}.auth-card .error-message{margin-top:8px;}.loading{background:#fff;border:2px solid #000;margin:24px;padding:16px;align-self:start;}#toast{display:none;position:fixed;bottom:20px;right:24px;max-width:min(460px,calc(100% - 48px));background:#fff;border:2px solid #000;box-shadow:3px 3px #000;padding:12px 16px;z-index:100;}#toast.show{display:block;}#toast.error::before{content:'! ';font-weight:bold;}.sr-only{position:absolute;top:0;left:0;width:1px;height:1px;padding:0;margin:0;overflow:hidden;clip-path:inset(50%);white-space:nowrap;border:0;}.skip-link{position:absolute;top:-100px;left:10px;z-index:200;background:#fff;color:#000;padding:8px;border:2px solid #000;}.skip-link:focus{top:4px;}
+@media(min-width:1450px){#content{max-width:1550px;width:100%;align-self:center;}.mac-icons{justify-content:center;}}
+@media(max-width:1000px){.desktop-columns{grid-template-columns:minmax(0,1fr);}.inventory-layout aside{display:grid;grid-template-columns:minmax(220px,.7fr) minmax(0,1fr);gap:20px;}.metrics{grid-template-columns:repeat(2,minmax(0,1fr));}}
+@media(max-width:750px){#content{padding:12px;}.mac-window{margin:0 0 16px;width:auto;height:auto;}.desktop-columns,.inventory-layout aside,.split{display:block;}.mac-icons{padding:12px;gap:6px;}.mac-icon{width:80px;}.mac-menubar{gap:6px;font-size:13px;}.mac-menubar .mac-right{flex-basis:100%;order:5;margin:2px 6px;}.mac-grid{max-width:none;}.mac-status{gap:5px 12px;}#modal{margin:auto;}.mac-body{padding:12px;}.setting-row{align-items:start;flex-direction:column;}.form-fields input,.form-fields select,.mac-btn{min-height:36px;}}
+@media print{#app:has(~dialog[open]){display:none;}#modal[open]{position:static;max-height:none;width:100%;border:0;box-shadow:none;}#modal .mac-titlebar,#modal .modal-actions,#toast,.skip-link{display:none;}.mac-window{box-shadow:none;break-inside:avoid;}#content{padding:0;}.desktop-columns{display:block;}}

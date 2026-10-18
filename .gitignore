@@ -1,0 +1,29 @@
+# Build artifacts
+/target/
+
+# Database files
+*.sqlite3
+*.sqlite3-wal
+*.sqlite3-shm
+*.db
+*.db-wal
+*.db-shm
+/dist/
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Config (user-specific)
+config.toml
+
+# Local login credentials
+/.slim_session
+session.token
+*.session
